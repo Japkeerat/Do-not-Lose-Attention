@@ -2,7 +2,59 @@
 <html>
   <head>
     <title>Website Blocker</title>
-    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f5f5f5;
+        padding: 20px;
+        width: 300px;
+      }
+
+      h1 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      label {
+        margin-right: 10px;
+      }
+
+      input[type="text"] {
+        flex-grow: 1;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 6px;
+        margin-right: 10px;
+        font-size: 14px;
+      }
+
+      button {
+        background-color: #0078d4;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 6px 12px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      button:hover {
+        background-color: #005a9e;
+      }
+
+      .checkbox-label {
+        display: block;
+        margin-top: 15px;
+      }
+    </style>
   </head>
   <body>
     <h1>Website Blocker</h1>
@@ -12,7 +64,7 @@
       <button type="submit">Block</button>
     </form>
     <div>
-      <label for="block-subdomains">Block all subdomains:</label>
+      <label for="block-subdomains" class="checkbox-label">Block all subdomains:</label>
       <input type="checkbox" id="block-subdomains" />
     </div>
     <script src="options.js"></script>
