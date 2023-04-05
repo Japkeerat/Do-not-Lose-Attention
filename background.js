@@ -30,12 +30,13 @@ function isBlocked(hostname) {
 }
 
 chrome.webRequest.onBeforeRequest.addListener(
-  (details) => {
-    const url = new URL(details.url);
-    if (isBlocked(url.hostname)) {
-      return { redirectUrl: chrome.runtime.getURL('blocked.html') };
-    }
-  },
-  { urls: ['<all_urls>'] },
-  ['blocking']
-);
+    (details) => {
+      const url = new URL(details.url);
+      if (isBlocked(url.hostname)) {
+        return { redirectUrl: chrome.runtime.getURL(`blocked.html?domain=${url.hostname}`) };
+      }
+    },
+    { urls: ['<all_urls>'] },
+    ['blocking']
+  );
+  
