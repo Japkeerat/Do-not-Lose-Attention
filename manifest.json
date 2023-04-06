@@ -4,7 +4,7 @@
   "version": "1.0",
   "description": "A simple website blocker for Microsoft Edge",
   "icons": {},
-  "permissions": ["storage", "webRequest", "webRequestBlocking", "*://*/*"],
+  "permissions": ["storage", "webRequest", "webRequestBlocking", "*://*/*", "notifications"],
   "background": {
     "scripts": ["background.js"],
     "persistent": true

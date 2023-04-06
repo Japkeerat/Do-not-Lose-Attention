@@ -18,19 +18,21 @@ function getQueryParam(param) {
   updateBlockedMessage();
 
 function unblockDomain(domain) {
-  const domainWithoutWWW = domain.replace(/^www\./, '');
-  const domainWithWWW = 'www.' + domainWithoutWWW;
-
-  chrome.storage.sync.get('blockedWebsites', (data) => {
-    const blockedWebsites = data.blockedWebsites || [];
-    const updatedBlockedWebsites = blockedWebsites.filter(
-      (blocked) => blocked !== domainWithoutWWW && blocked !== domainWithWWW
-    );
-
-    chrome.storage.sync.set({ blockedWebsites: updatedBlockedWebsites }, () => {
-      window.location.href = `https://${domain}`;
+    const domainWithoutWWW = domain.replace(/^www\./, '');
+    const domainWithWWW = 'www.' + domainWithoutWWW;
+  
+    chrome.storage.sync.get('blockedWebsites', (data) => {
+      const blockedWebsites = data.blockedWebsites || [];
+      const updatedBlockedWebsites = blockedWebsites.filter(
+        (blocked) => blocked !== domainWithoutWWW && blocked !== domainWithWWW
+      );
+  
+      chrome.storage.sync.set({ blockedWebsites: updatedBlockedWebsites }, () => {
+        // Send a message to the background page
+        chrome.runtime.sendMessage({ action: 'reblockWebsite', domain: domain });
+        window.location.href = `https://${domain}`;
+      });
     });
-  });
 }
 
 function unblockButtonClickHandler() {
