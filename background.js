@@ -53,5 +53,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       setTimeout(() => {
         reblockWebsite(request.domain);
       }, 300000); // 5 minutes in milliseconds
+  
+      // Store the unblock timestamp
+      const now = new Date().getTime();
+      const unblockedWebsites = { ...request.unblockedWebsites, [request.domain]: now };
+      chrome.storage.sync.set({ unblockedWebsites }, () => {});
     }
-});
+  });
